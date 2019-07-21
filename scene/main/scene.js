@@ -1,20 +1,102 @@
+class Player extends SoapImage {
+    constructor(game) {
+        super(game, 'player')
+        this.setup()
+    }
+    setup() {
+        this.speed = 10
+    }
+    update() {
+
+    }
+    moveLeft() {
+        this.x -= this.speed
+    }
+    moveRight() {
+        this.x += this.speed
+    }
+    moveUp() {
+        this.y -= this.speed
+    }
+    moveDown() {
+        this.y += this.speed
+    }
+}
+
+var randomBetween = function(start, end) {
+    var n = Math.random() * (end - start + 1)
+    return Math.floor(n + start)
+}
+
+class Enemy extends SoapImage {
+    constructor(game) {
+        var type = randomBetween(0, 2)
+        var name = 'enemy' + String(type)
+        super(game, name)
+        this.setup()
+    }
+    setup() {
+        this.speed = randomBetween(2, 5)
+        this.x = randomBetween(0, 375)
+        this.y = -randomBetween(0, 275)
+    }
+    update() {
+        this.y += this.speed
+        if (this.y > 750) {
+            this.setup()
+        }
+    }
+}
+
 class Scene extends SoapScene {
     constructor(game) {
         super(game)
         this.setup()
+        this.setupInputs()
     }
     setup() {
         var game = this.game
+        this.numberOfEnemies = 10
         this.bg = SoapImage.new(game, 'background')
-        this.player = SoapImage.new(game, 'player')
+
+        // this.player = SoapImage.new(game, 'player')
+        // this.player.x = 100
+        // this.player.y = 150
+        this.player = Player.new(game)
         this.player.x = 100
         this.player.y = 150
 
-
         this.addElement(this.bg)
         this.addElement(this.player)
-    }
 
+        this.addEnemies()
+
+    }
+    addEnemies() {
+        var es = []
+        for (var i = 0; i < this.numberOfEnemies; i++) {
+            var e = Enemy.new(this.game)
+            es.push(e)
+            this.addElement(e)
+        }
+        this.enemies = es
+    }
+    setupInputs() {
+        var g = this.game
+        var s = this
+        g.registerAction('a', function() {
+            s.player.moveLeft()
+        })
+        g.registerAction('d', function() {
+            s.player.moveRight()
+        })
+        g.registerAction('w', function() {
+            s.player.moveUp()
+        })
+        g.registerAction('s', function() {
+            s.player.moveDown()
+        })
+    }
     update() {
 
     }

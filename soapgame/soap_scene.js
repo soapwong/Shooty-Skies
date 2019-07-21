@@ -19,7 +19,10 @@ class SoapScene {
         }
     }
     update() {
-
+        for (var i = 0; i < this.elements.length; i++) {
+            var e = this.elements[i]
+            e.update()
+        }
     }
 }
 

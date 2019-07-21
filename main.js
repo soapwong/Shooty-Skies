@@ -38,6 +38,9 @@ var __main = function() {
         bullet: 'img/bullet.png',
         player: 'img/player.png',
         background: 'img/background.png',
+        enemy0: 'img/enemy0.png',
+        enemy1: 'img/enemy1.png',
+        enemy2: 'img/enemy2.png',
     }
 
     var game = SoapGame.instance(30, images, function(g) {
