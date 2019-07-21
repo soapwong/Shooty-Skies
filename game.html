@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>game 1</title>
+        <style media="screen">
+            canvas {
+                border: 1px black solid;
+            }
+        </style>
+        <!-- game -->
+        <script src='soapgame/utils.js'></script>
+        <script src='soapgame/soap_game.js'></script>
+        <script src='soapgame/soap_scene.js'></script>
+        <script src='soapgame/soap_image.js'></script>
+        <!-- scene -->
+        <script src='scene/main/paddle.js'></script>
+        <script src='scene/main/ball.js'></script>
+        <script src='scene/main/block.js'></script>
+        <script src='scene/main/scene.js'></script>
+        <!-- end title scene -->
+        <script src='scene/end/scene_end.js'></script>
+        <script src='scene/title/scene_title.js'></script>
+        <!-- 关卡数据 -->
+        <script src='level.js'></script>
+    </head>
+    <body>
+        <canvas id="id-canvas" width="400" height="300"></canvas>
+        <hr>
+        <input id="id-input-speed" type="range" value="1">
+        <!-- <div class="">
+            <textarea id="id-text-log" rows="25" cols="80" value="30"></textarea>
+        </div> -->
+        <script src="main.js"></script>
+    </body>
+</html>
