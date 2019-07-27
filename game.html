@@ -25,12 +25,60 @@
         <script src='level.js'></script>
     </head>
     <body>
-        <canvas id="id-canvas" width="450" height="750"></canvas>
+        <canvas id="id-canvas" width="450" height="700"></canvas>
         <hr>
         <input id="id-input-speed" type="range" value="1">
         <!-- <div class="">
             <textarea id="id-text-log" rows="25" cols="80" value="30"></textarea>
         </div> -->
+        <div class="">
+            <label>
+                <input class="auto-slider" type="range" 
+                    value=""
+                    data-value="config.player_speed"
+                    >
+                玩家速度: <span class="label"></span>
+            </label>
+        </div>
+        <div class="">
+            <label>
+                <input class="auto-slider" type="range" 
+                    value=""
+                    data-value="config.fire_cooldown"
+                    >
+                子弹冷却时间: <span class="label"></span>
+            </label>
+        </div>
+        <div class="">
+            <label>
+                <input class="auto-slider" type="range" 
+                    value=""
+                    data-value="config.bullet_speed"
+                    >
+                子弹速度: <span class="label"></span>
+            </label>
+        </div>
         <script src="main.js"></script>
+        <script>
+            var bindAll = function(selector, eventName, callback) {
+                var l = es(selector)
+                for (var i = 0; i < l.length; i++) {
+                    var input = l[i]
+                    input.addEventListener(eventName, function(event) {
+                        callback(event)
+                    })
+                }
+            }
+
+            bindAll('.auto-slider', 'input', function(event) {
+                var target = event.target
+                var bindData = target.dataset.value
+                var v = target.value
+                eval(bindData + '=' + v)
+
+                var label = target.closest('label').querySelector('.label')
+                label.innerText = v
+            })
+        </script>
     </body>
 </html>

@@ -8,6 +8,8 @@ var e = function(selector) {
     }
 }
 
+var es = selector => document.querySelectorAll(selector)
+
 var log = console.log.bind(console)
 
 var imageFromPath = function(path) {
