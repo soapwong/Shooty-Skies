@@ -41,9 +41,10 @@ var __main = function() {
         enemy0: 'img/enemy0.png',
         enemy1: 'img/enemy1.png',
         enemy2: 'img/enemy2.png',
+        cloud: 'img/cloud.png',
     }
 
-    var game = SoapGame.instance(30, images, function(g) {
+    var game = SoapGame.instance(60, images, function(g) {
         var s = Scene.new(g)
         g.runWithScene(s)
     })
