@@ -1,4 +1,4 @@
-var e = function(selector) {
+const e = function(selector) {
     var element = document.querySelector(selector)
     if (element === null) {
         var s = `元素没有找到, 选择器 ${selector} 写错了或者没有把 js 放在 </body> 前面`
@@ -8,9 +8,9 @@ var e = function(selector) {
     }
 }
 
-var es = selector => document.querySelectorAll(selector)
+const es = selector => document.querySelectorAll(selector)
 
-var log = console.log.bind(console)
+const log = console.log.bind(console)
 
 var imageFromPath = function(path) {
     var img = new Image()
@@ -26,4 +26,10 @@ var rectIntersects = function(a, b) {
         }
     }
     return false
+}
+
+
+const randomBetween = function(start, end) {
+    var n = Math.random() * (end - start + 1)
+    return Math.floor(n + start)
 }

@@ -44,6 +44,7 @@
             <label>
                 <input class="auto-slider" type="range" 
                     value=""
+                    max="20"
                     data-value="config.fire_cooldown"
                     >
                 子弹冷却时间: <span class="label"></span>
@@ -60,6 +61,8 @@
         </div>
         <script src="main.js"></script>
         <script>
+            // 绑定 label
+            // 绑定其他的再加上去就可以了
             var bindAll = function(selector, eventName, callback) {
                 var l = es(selector)
                 for (var i = 0; i < l.length; i++) {
