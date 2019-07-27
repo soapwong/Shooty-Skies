@@ -1,4 +1,5 @@
 # Shooty-Skies
+### 打开 game.html 可玩
 基于打砖块的代码
 1. wasd 控制飞机
 2. 按 0 发射子弹
