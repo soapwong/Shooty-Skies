@@ -1,4 +1,4 @@
-class SoapGame {
+class GuaGame {
     constructor(fps, images, runCallback) {
         window.fps = fps
         this.images = images
@@ -26,7 +26,7 @@ class SoapGame {
     }
 
     drawImage(img) {
-        // SoapImage
+        // GuaImage
         this.context.drawImage(img.texture, img.x, img.y)
     }
         // update

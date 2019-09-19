@@ -1,105 +1,4 @@
-const config = {
-    player_speed: 10,
-    cloud_speed: 1,
-    enemy_speed: 5,
-    bullet_speed: 5,
-    fire_cooldown: 9,
-}
-
-class Bullet extends SoapImage {
-    constructor(game) {
-        super(game, 'bullet')
-        this.setup()
-    }
-    setup() {
-        // 动态调整每颗子弹速度
-        this.speed = config.bullet_speed
-    }
-    update() {
-        // 调整整体子弹速度
-        // this.speed = config.bullet_speed
-        this.y -= this.speed
-    }
-}
-
-class Player extends SoapImage {
-    constructor(game) {
-        super(game, 'player')
-        this.setup()
-    }
-    setup() {
-        this.speed = 10
-        this.cooldown = 0
-    }
-    update() {
-        if (this.cooldown > 0) {
-            this.cooldown--
-        }
-    }
-    fire() {
-        if (this.cooldown === 0) {
-            this.cooldown = config.fire_cooldown
-            var x = this.x + this.w / 2
-            var y = this.y
-            var b = Bullet.new(this.game)
-            b.x = x
-            b.y = y
-            this.scene.addElement(b)
-        }
-    }
-    moveLeft() {
-        this.x -= this.speed
-    }
-    moveRight() {
-        this.x += this.speed
-    }
-    moveUp() {
-        this.y -= this.speed
-    }
-    moveDown() {
-        this.y += this.speed
-    }
-}
-
-class Enemy extends SoapImage {
-    constructor(game) {
-        var type = randomBetween(0, 2)
-        var name = 'enemy' + String(type)
-        super(game, name)
-        this.setup()
-    }
-    setup() {
-        this.speed = randomBetween(2, 5)
-        this.x = randomBetween(0, 375)
-        this.y = -randomBetween(0, 275)
-    }
-    update() {
-        this.y += this.speed
-        if (this.y > 750) {
-            this.setup()
-        }
-    }
-}
-
-class Cloud extends SoapImage {
-    constructor(game) {
-        super(game, 'cloud')
-        this.setup()
-    }
-    setup() {
-        this.speed = 3
-        this.x = randomBetween(0, 375)
-        this.y = -randomBetween(0, 100)
-    }
-    update() {
-        this.y += this.speed
-        if (this.y > 750) {
-            this.setup()
-        }
-    }
-}
-
-class Scene extends SoapScene {
+class Scene extends GuaScene {
     constructor(game) {
         super(game)
         this.setup()
@@ -108,10 +7,10 @@ class Scene extends SoapScene {
     setup() {
         var game = this.game
         this.numberOfEnemies = 10
-        this.bg = SoapImage.new(game, 'background')
+        this.bg = GuaImage.new(game, 'background')
         this.cloud = Cloud.new(game, 'cloud')
 
-        // this.player = SoapImage.new(game, 'player')
+        // this.player = GuaImage.new(game, 'player')
         // this.player.x = 100
         // this.player.y = 150
         this.player = Player.new(game)
@@ -122,7 +21,9 @@ class Scene extends SoapScene {
         this.addElement(this.player)
 
         this.addEnemies()
-
+        // add particle 添加小火花
+        var ps = GuaParticleSystem.new(this.game)
+        this.addElement(ps)
     }
     addEnemies() {
         var es = []

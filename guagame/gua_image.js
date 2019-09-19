@@ -1,4 +1,4 @@
-class SoapImage {
+class GuaImage {
     constructor(game, name) {
         this.game = game
         this.texture = game.textureByName(name)
@@ -12,7 +12,7 @@ class SoapImage {
         return i
     }
     draw() {
-
+		this.game.drawImage(this)
     }
     update() {
 

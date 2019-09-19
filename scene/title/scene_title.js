@@ -1,15 +1,40 @@
-class SceneTitle extends SoapScene {
+class GuaParticle extends GuaImage {
     constructor(game) {
-        super(game)
-        game.registerAction('k', function() {
-            var s = Scene(game)
-            game.replaceScene(s)
-        })    
+        super(game, 'fire')
+        this.setup()
     }
-    draw() {
-        this.game.context.fillText('按 k 开始游戏', 100, 190)
+    setup() {
+        this.life = 25
+    }
+    init(x, y, vx, vy) {
+        this.x = x
+        this.y = y
+        this.vx = vx
+        this.vy = vy
     }
     update() {
+        this.life--
+        this.x += this.vx
+        this.y += this.vy
+        // 加速度
+        var factor = 0.02
+        // 重力
+        var gravity = -0.05 
+        // 火花重力, this.vx this.vy + 重力
+        this.vx += gravity + factor * this.vx
+        this.vy += gravity + factor * this.vy
+    }
+}
 
+
+
+class SceneTitle extends GuaScene {
+    constructor(game) {
+        super(game)
+        var label = GuaLabel.new(game, 'hello')
+        this.addElement(label)
+
+        var ps = GuaParticleSystem.new(game)
+        this.addElement(ps)
     }
 }

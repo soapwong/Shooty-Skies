@@ -42,10 +42,12 @@ var __main = function() {
         enemy1: 'img/enemy1.png',
         enemy2: 'img/enemy2.png',
         cloud: 'img/cloud.png',
+        fire: 'img/fire.png',
     }
 
-    var game = SoapGame.instance(60, images, function(g) {
+    var game = GuaGame.instance(60, images, function(g) {
         var s = Scene.new(g)
+		// var s = SceneTitle.new(g)
         g.runWithScene(s)
     })
 

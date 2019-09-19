@@ -1,4 +1,4 @@
-class SoapScene {
+class GuaScene {
     constructor(game) {
         this.game = game
         this.debugModeEnabled = true
@@ -14,9 +14,10 @@ class SoapScene {
     }
     draw() {
         // 父类加 draw
-        for (var i = 0; i < this.elements.length; i++) {
-            var e = this.elements[i]
-            this.game.drawImage(e)            
+        for (var e of this.elements) {
+            // var e = this.elements[i]
+            // this.game.drawImage(e)
+            e.draw()
         }
     }
     update() {
