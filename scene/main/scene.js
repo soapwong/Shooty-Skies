@@ -19,6 +19,7 @@ class Scene extends GuaScene {
 
         this.addElement(this.bg)
         this.addElement(this.player)
+        this.addElement(this.cloud)
 
         this.addEnemies()
         // add particle 添加小火花

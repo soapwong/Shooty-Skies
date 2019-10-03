@@ -41,7 +41,8 @@ var __main = function() {
         enemy0: 'img/enemy0.png',
         enemy1: 'img/enemy1.png',
         enemy2: 'img/enemy2.png',
-        cloud: 'img/cloud.png',
+        cloud0: 'img/cloud0.png',
+        cloud1: 'img/cloud1.png',
         fire: 'img/fire.png',
     }
 
