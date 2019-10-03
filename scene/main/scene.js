@@ -6,7 +6,8 @@ class Scene extends GuaScene {
     }
     setup() {
         var game = this.game
-        this.numberOfEnemies = 10
+        this.numberOfEnemies = 5
+        this.numberOfClouds = 5
         this.bg = GuaImage.new(game, 'background')
         this.cloud = Cloud.new(game, 'cloud')
 
@@ -20,7 +21,8 @@ class Scene extends GuaScene {
         this.addElement(this.bg)
         this.addElement(this.player)
         this.addElement(this.cloud)
-
+        
+        this.addClouds()
         this.addEnemies()
         // add particle 添加小火花
         var ps = GuaParticleSystem.new(this.game)
@@ -34,6 +36,15 @@ class Scene extends GuaScene {
             this.addElement(e)
         }
         this.enemies = es
+    }
+    addClouds() {
+        var cs = []
+        for (var i = 0; i < this.numberOfClouds; i++) {
+            var c = Cloud.new(this.game)
+            cs.push(c)
+            this.addElement(c)
+        }
+        this.clouds
     }
     setupInputs() {
         var g = this.game
