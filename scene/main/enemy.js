@@ -8,9 +8,9 @@ class Enemy extends GuaImage {
     setup() {
         this.alive = true
         this.bullets = []
-        this.cooldown = randomBetween(50, 70)
+        this.cooldown = randomBetween(70, 90)
         this.speed = randomBetween(2, 3)
-        this.x = randomBetween(0, 375)
+        this.x = randomBetween(0, 360)
         this.y = -randomBetween(0, 275)
     }
     update() {

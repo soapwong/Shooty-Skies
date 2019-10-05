@@ -7,7 +7,7 @@ class EnemyBullet extends GuaImage {
         return new this(...args)
     }
     setup() {
-        this.speed = 3
+        this.speed = 4
     }
     update() {
         this.y += this.speed

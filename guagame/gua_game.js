@@ -38,7 +38,7 @@ class GuaGame {
         this.scene.draw()
     }
     //
-    registerAction = (key, callback) => {
+    registerAction(key, callback) {
         this.actions[key] = callback
     }
 
@@ -64,7 +64,7 @@ class GuaGame {
         }, 1000/window.fps)
     }
             // events
-    textureByName = (name) => {
+    textureByName(name) {
         // log('image by name', g.images)
         var img = this.images[name]
         // var image = {
@@ -75,7 +75,7 @@ class GuaGame {
         return img
     }
     
-    runWithScene = (scene) => {
+    runWithScene(scene) {
         var g = this
         g.scene = scene
         // 开始运行程序
@@ -83,15 +83,15 @@ class GuaGame {
             g.runloop()
         }, 1000/window.fps)
     }
-    replaceScene = (scene) => {
+    replaceScene(scene) {
         // 直接替换
         this.scene = scene
     }
-    __start = (scene) => {
+    __start(scene) {
         this.runCallback(this)
     }
 
-    init = () => {
+    init() {
         var g = this
         var loads = []
         // 预先载入所有图片

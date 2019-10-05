@@ -70,8 +70,17 @@ class Scene extends GuaScene {
         this.deleteParticle()
         this.deletePlayerBullet()
         this.deleteEnemyBullet()
-        // 玩家子弹击中敌机
+        // 击中敌人, 子弹碰撞, 敌子弹击中玩家
         this.bulletKillEnemy()
+        this.bulletKillBullet()
+        this.bulletKillPlayer()
+        // 玩家敌机碰撞
+        this.bothCollide()
+    }
+    updateParticle(game, x, y) {
+        var p = GuaParticleSystem.new(game, x, y)
+        this.addElement(p)
+        this.particles.push(p)
     }
     deleteParticle() {
         // 生成新数组
@@ -121,11 +130,71 @@ class Scene extends GuaScene {
                     this.deleteElement(b)
                     this.player.bullets.splice(j, 1)
                     e.alive = false
-                    var p = GuaParticleSystem.new(this.game, b.x, b.y)
-                    this.addElement(p)
-                    this.particles.push(p)
+                    this.updateParticle(this.game, b.x, b.y)
                 }
             }
         } 
+    }
+    bulletKillBullet() {
+        for (var i = 0; i < this.enemies.length; i++) {
+            var e = this.enemies[i]
+            var enemyBullets = e.bullets
+            var bullets = this.player.bullets
+            for (var j = 0; j < bullets.length; j++) {
+                var b = bullets[j]
+                for (var k = 0; k < enemyBullets.length; k++) {
+                    var a = enemyBullets[k]
+                    if (a.collide(b)) {
+                        // log('hit')
+                        this.deleteElement(b)
+                        this.player.bullets.splice(j, 1)
+                        this.deleteElement(a)
+                        enemyBullets.splice(k, 1)
+                        this.updateParticle(this.game, b.x, b.y)
+                    }
+                }
+            }
+        }
+    }
+    bulletKillPlayer() {
+        for (var i = 0; i < this.enemies.length; i++) {
+            var e = this.enemies[i]
+            var bullets = e.bullets
+            var player = this.player
+            for (var j = 0; j < bullets.length; j++) {
+                var b = bullets[j]
+                if (player.collide(b)) {
+                    this.deleteElement(b)
+                    this.deleteElement(player)
+                    player.alive = false
+                    this.updateParticle(this.game, b.x, b.y)
+                    this.gameOver()
+                }
+            }
+        }
+    }
+    bothCollide() {
+        for (var i = 0; i < this.enemies.length; i++) {
+            var e = this.enemies[i]
+            if (this.player.collide(e)) {
+                this.deleteElement(e)
+                this.deleteElement(this.player)
+                this.player.alive = false
+                e.alive = false
+                this.updateParticle(this.game, e.x, e.y)
+                this.gameOver()
+            }
+        }
+    }
+    // 
+    gameOver() {
+        var game = this.game
+        // log('game', this.game, game)
+        if (this.player.alive === false) {
+            setTimeout(function() { 
+                var s = SceneEnd.new(game)
+                game.replaceScene(s)
+            }, 700)
+        }
     }
 }
