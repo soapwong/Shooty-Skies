@@ -36,6 +36,7 @@ var enableDebugMode = function(game, enable) {
 var __main = function() {
     var images = {
         bullet: 'img/bullet.png',
+        enemyBullet: 'img/bullet1.png',
         player: 'img/player.png',
         background: 'img/background.png',
         enemy0: 'img/enemy0.png',

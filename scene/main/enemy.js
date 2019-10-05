@@ -6,14 +6,33 @@ class Enemy extends GuaImage {
         this.setup()
     }
     setup() {
-        this.speed = randomBetween(2, 5)
+        this.alive = true
+        this.bullets = []
+        this.cooldown = randomBetween(50, 70)
+        this.speed = randomBetween(2, 3)
         this.x = randomBetween(0, 375)
         this.y = -randomBetween(0, 275)
     }
     update() {
         this.y += this.speed
-        if (this.y > 750) {
+        if (this.y > 750 || this.alive === false) {
             this.setup()
+        }
+        if (this.cooldown > 0) {
+            this.cooldown--
+        }
+        this.fire()
+    }
+    fire() {
+        if (this.cooldown === 0) {
+            this.cooldown = randomBetween(50, 70)
+            var x = this.x + this.w / 2
+            var y = this.y + this.h
+            var b = EnemyBullet.new(this.game)
+            b.x = x
+            b.y = y
+            this.scene.addElement(b)
+            this.bullets.push(b)
         }
     }
 }

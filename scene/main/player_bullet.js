@@ -11,7 +11,4 @@ class PlayerBullet extends GuaImage {
     update() {
         this.y -= this.speed
     }
-    draw() {
-
-    }
 }

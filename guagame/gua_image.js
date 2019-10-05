@@ -14,6 +14,10 @@ class GuaImage {
     draw() {
 		this.game.drawImage(this)
     }
+    collide(img) {
+        var c = rectIntersects(this, img) || rectIntersects(img, this)
+        return c
+    }
     update() {
 
     }
